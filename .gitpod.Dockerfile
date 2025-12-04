@@ -1,17 +1,12 @@
 FROM ubuntu:22.04
-
-# Basics
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y \
-    sudo wget curl xfce4 xfce4-goodies \
+    sudo wget curl python3 python3-pip \
+    xfce4 xfce4-goodies \
     novnc websockify x11vnc xvfb \
-    chromium-browser nodejs npm git \
+    chromium-browser git \
     && apt clean
-    
-# Set password for VNC
-RUN mkdir ~/.vnc && \
-    x11vnc -storepasswd "csvp@2025" ~/.vnc/passwd
 
-# Workspace directory
 WORKDIR /workspace
-
 COPY . /workspace
+RUN pip3 install flask cryptography
