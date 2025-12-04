@@ -4,8 +4,9 @@ image:
 ports:
   - port: 6080
     onOpen: open-browser
-    visibility: public
+  - port: 5000
+    onOpen: open-preview
 
 tasks:
-  - name: Start Desktop + Browser + Backend
+  - name: Start Everything
     command: bash start.sh
